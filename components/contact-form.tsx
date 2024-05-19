@@ -34,7 +34,7 @@ export const ContactForm = () => {
         toast.success(response.message)
 
         form.reset()
-    }, [submitContactForm, form])
+    }, [form])
 
     return (
         <form className="mt-10 space-y-3 flex flex-col dark:text-black" onSubmit={form.handleSubmit(onSubmit)}>
