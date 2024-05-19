@@ -1,8 +1,11 @@
 "use client"
 
-import { useMemo } from "react"
+import { useMemo, useCallback } from "react"
 import { motion } from "framer-motion"
 import Link from "next/link"
+
+import { useActiveSection } from "@/hooks/use-active-section"
+import { cn } from "@/lib/cn"
 
 export const Header = () => {
     const navLinksData = useMemo<{
@@ -28,6 +31,14 @@ export const Header = () => {
         },
     ], [])
 
+    const { activeSection, setActiveSection, setLastChangedAt } = useActiveSection()
+
+    const onClick = useCallback((section: Section) => {
+        setActiveSection(section)
+
+        setLastChangedAt(Date.now())
+    }, [setActiveSection, setLastChangedAt])
+
     return (
         <header className="z-[9999] relative">
             <motion.div className="fixed top-0 left-1/2 -translate-x-1/2 h-[4.5rem] w-full rounded-none border border-white border-opacity-40 bg-white bg-opacity-80 shadow-lg shadow-black/[0.03] backdrop-blur-[0.5rem] sm:top-6 sm:h-[3.25rem] sm:w-[36rem] sm:rounded-full" initial={{
@@ -43,14 +54,25 @@ export const Header = () => {
                 <ul className="flex w-[22rem] flex-wrap items-center justify-center gap-y-1 text-[0.9rem] font-medium text-gray-500 sm:w-[initial] sm:flex-nowrap sm:gap-5">
 
                     {navLinksData.map((item, index) => (
-                        <motion.li key={index} className="h-3/4 flex items-center justify-center" initial={{
+                        <motion.li key={index} className="h-3/4 flex items-center justify-center relative" initial={{
                             translateY: "-6.25rem",
                             opacity: 0,
                         }} animate={{
                             translateY: 0,
                             opacity: 1,
-                        }}>
-                            <Link className="flex w-full items-center justify-center px-3 py-3 hover:text-gray-950 transition capitalize" href={`#${item.section}`}>{item.section}</Link>
+                        }} onClick={() => onClick(item.section)}>
+                            <Link className={cn("flex w-full items-center justify-center px-3 py-3 hover:text-gray-950 transition capitalize", item.section === activeSection && "text-gray-950")} href={`#${item.section}`}>
+                                {item.section}
+
+                                {item.section === activeSection && (
+                                    <motion.span className="bg-gray-100 rounded-full absolute inset-0 -z-10" layoutId="activeSection" transition={{
+                                        type: "spring",
+                                        stiffness: 380,
+                                        damping: 30,
+                                    }} />
+                                )}
+
+                            </Link>
                         </motion.li>
                     ))}
 

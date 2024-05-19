@@ -37,7 +37,7 @@ export const Portfolio = () => {
     ], [])
 
     return (
-        <SectionWrapper id="portfolio">
+        <SectionWrapper className="mb-28 sm:mb-48 scroll-mt-28" id="portfolio">
             <SectionHeading>My Projects</SectionHeading>
             <div>
 

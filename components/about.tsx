@@ -7,7 +7,7 @@ import { SectionHeading } from "@/components/section-heading"
 
 export const About = () => {
     return (
-        <SectionWrapper className="mb-28 max-w-[45rem] text-center leading-8 sm:mb-48" id="about">
+        <SectionWrapper className="mb-28 max-w-[45rem] text-center leading-8 sm:mb-48 scroll-mt-28" id="about">
             <motion.div initial={{
                 opacity: 0,
                 translateY: "6.25rem",

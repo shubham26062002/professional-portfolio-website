@@ -11,7 +11,7 @@ import { FaGithub, FaLinkedin } from "react-icons/fa6"
 
 export const Home = () => {
     return (
-        <SectionWrapper className="mb-28 max-w-[50rem] text-center sm:mb-48" id="home">
+        <SectionWrapper className="mb-28 max-w-[50rem] text-center sm:mb-48 scroll-mt-[100rem]" id="home">
             <div className="flex items-center justify-center">
                 <div className="relative">
                     <motion.div initial={{
