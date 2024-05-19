@@ -41,7 +41,7 @@ export const Header = () => {
 
     return (
         <header className="z-[9999] relative">
-            <motion.div className="fixed top-0 left-1/2 -translate-x-1/2 h-[4.5rem] w-full rounded-none border border-white border-opacity-40 bg-white bg-opacity-80 shadow-lg shadow-black/[0.03] backdrop-blur-[0.5rem] sm:top-6 sm:h-[3.25rem] sm:w-[36rem] sm:rounded-full" initial={{
+            <motion.div className="fixed top-0 left-1/2 -translate-x-1/2 h-[4.5rem] w-full rounded-none border border-white/40 bg-white/80 shadow-lg shadow-black/[0.03] backdrop-blur-[0.5rem] sm:top-6 sm:h-[3.25rem] sm:w-[36rem] sm:rounded-full dark:bg-gray-950/75 dark:border-black/40" initial={{
                 translateY: "-6.25rem",
                 translateX: "-50%",
                 opacity: 0,
@@ -61,11 +61,11 @@ export const Header = () => {
                             translateY: 0,
                             opacity: 1,
                         }} onClick={() => onClick(item.section)}>
-                            <Link className={cn("flex w-full items-center justify-center px-3 py-3 hover:text-gray-950 transition capitalize", item.section === activeSection && "text-gray-950")} href={`#${item.section}`}>
+                            <Link className={cn("flex w-full items-center justify-center px-3 py-3 hover:text-gray-950 transition capitalize dark:text-gray-500 dark:hover:text-gray-300", item.section === activeSection && "text-gray-950 dark:text-gray-300")} href={`#${item.section}`}>
                                 {item.section}
 
                                 {item.section === activeSection && (
-                                    <motion.span className="bg-gray-100 rounded-full absolute inset-0 -z-10" layoutId="activeSection" transition={{
+                                    <motion.span className="bg-gray-100 rounded-full absolute inset-0 -z-10 dark:bg-gray-800" layoutId="activeSection" transition={{
                                         type: "spring",
                                         stiffness: 380,
                                         damping: 30,

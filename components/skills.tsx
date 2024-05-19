@@ -31,7 +31,7 @@ export const Skills = () => {
             <ul className="flex flex-wrap justify-center items-center gap-2 text-lg text-gray-800">
 
                 {skillsData.map((item, index) => (
-                    <motion.li key={index} className={cn("bg-white border border-black/[0.1] rounded-xl py-3 px-5")} variants={{
+                    <motion.li key={index} className={cn("bg-white border border-black/10 rounded-xl py-3 px-5 dark:bg-white/10 dark:text-white/80")} variants={{
                         initial: {
                             opacity: 0,
                             translateY: "6.25rem",

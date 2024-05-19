@@ -7,6 +7,7 @@ import { FaCode, FaGraduationCap, FaReact } from "react-icons/fa6"
 
 import { SectionWrapper } from "@/components/section-wrapper"
 import { SectionHeading } from "@/components/section-heading"
+import { useTheme } from "@/hooks/use-theme"
 
 export const Experience = () => {
     const experiencesData = useMemo<{
@@ -37,27 +38,29 @@ export const Experience = () => {
         },
     ], [])
 
+    const { theme } = useTheme()
+
     return (
         <SectionWrapper className="mb-28 sm:mb-48 scroll-mt-28 w-full" id="experience">
             <SectionHeading>My Experience</SectionHeading>
-            <VerticalTimeline lineColor="#e5e7eb">
+            <VerticalTimeline lineColor="">
 
                 {experiencesData.map((item, index) => (
                     <VerticalTimelineElement key={index} contentStyle={{
-                        background: "#f3f4f6",
+                        background: theme === "light" ? "#f3f4f6" : theme === "dark" ? "rgba(255, 255, 255, 0.05)" : "",
                         boxShadow: "none",
                         border: "1px solid rgba(0, 0, 0, 0.05)",
                         textAlign: "left",
                         padding: "1.3rem 2rem",
                     }} contentArrowStyle={{
-                        borderRight: "0.4rem solid #9ca3af",
+                        borderRight: theme === "light" ? "0.4rem solid #9ca3af" : theme === "dark" ? "0.4rem solid rgba(255, 255, 255, 0.5)" : "",
                     }} date={item.date} icon={item.icon} iconStyle={{
-                        background: "white",
+                        background: theme === "light" ? "white" : theme === "dark" ? "#111827" : "",
                         fontSize: "1.5rem",
                     }} visible>
                         <h3 className="font-semibold capitalize">{item.title}</h3>
                         <h4 className="font-normal !mt-0">{item.location}</h4>
-                        <p className="!mt-1 !font-normal text-gray-700">{item.description}</p>
+                        <p className="!mt-1 !font-normal text-gray-700 dark:text-white/75">{item.description}</p>
                     </VerticalTimelineElement>
                 ))}
 
