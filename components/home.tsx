@@ -1,15 +1,25 @@
 "use client"
 
+import { useCallback } from "react"
 import Image from "next/image"
 import { motion } from "framer-motion"
 import Link from "next/link"
 import { BsArrowRight } from "react-icons/bs"
 
+import { useActiveSection } from "@/hooks/use-active-section"
 import { SectionWrapper } from "@/components/section-wrapper"
 import { HiDownload } from "react-icons/hi"
 import { FaGithub, FaLinkedin } from "react-icons/fa6"
 
 export const Home = () => {
+    const { setActiveSection, setLastChangedAt } = useActiveSection()
+
+    const onClick = useCallback(() => {
+        setActiveSection("contact")
+
+        setLastChangedAt(Date.now())
+    }, [setActiveSection, setLastChangedAt])
+
     return (
         <SectionWrapper className="mb-28 max-w-[50rem] text-center sm:mb-48 scroll-mt-[100rem]" id="home">
             <div className="flex items-center justify-center">
@@ -58,7 +68,7 @@ export const Home = () => {
             }} transition={{
                 delay: 0.1,
             }}>
-                <Link className="uppercase leading-none text-sm tracking-widest bg-gray-900 text-white px-7 py-3 flex items-center gap-x-2 rounded-full w-fit hover:bg-gray-900/95 hover:scale-105 transition-all transform-gpu active:scale-100 active:bg-gray-900/95 focus-visible:outline-none focus-visible:bg-gray-900/95 focus-visible:scale-105 focus-visible:ring-1 focus-visible:ring-gray-900/50 focus-visible:ring-offset-1" href="#contact">
+                <Link className="uppercase leading-none text-sm tracking-widest bg-gray-900 text-white px-7 py-3 flex items-center gap-x-2 rounded-full w-fit hover:bg-gray-900/95 hover:scale-105 transition-all transform-gpu active:scale-100 active:bg-gray-900/95 focus-visible:outline-none focus-visible:bg-gray-900/95 focus-visible:scale-105 focus-visible:ring-1 focus-visible:ring-gray-900/50 focus-visible:ring-offset-1" href="#contact" onClick={onClick}>
                     Contact me
                     <BsArrowRight className="w-4 h-4 opacity-70" />
                 </Link>
