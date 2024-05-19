@@ -28,8 +28,6 @@ export const SectionWrapper = ({
         }
     }, [inView, lastChangedAt, setActiveSection, id])
 
-    console.log(activeSection)
-
     return (
         <section className={className} id={id} ref={ref}>{children}</section>
     )
