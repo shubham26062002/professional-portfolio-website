@@ -30,7 +30,7 @@ const RootLayout = ({
           {children}
           <Footer />
           <ThemeSwitch />
-          <Toaster position="bottom-right" />
+          <Toaster position="top-center" />
         </ThemeLoader>
       </body>
     </html>
